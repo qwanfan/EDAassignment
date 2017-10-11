@@ -1,0 +1,8 @@
+household_power <- read.table(file = "./data/household_power_consumption.txt", sep = ";", header = FALSE, skip = 66637, nrows = 2880)
+household_power_names <- read.table(file = "./data/household_power_consumption.txt", sep = ";", header = FALSE, nrows = 1,colClasses = "character")
+names(household_power) <- as.character(household_power_names)
+household_power[,1] <- dmy(household_power[,1])
+household_power[,3] <- as.numeric(household_power[,3])
+png(filename = "./data/plot1.png" , width = 480, height = 480)
+hist(household_power$Global_active_power, xlab = "Global Active Power (killowatts)", main = "Global Active Power", col = "red")
+dev.off()
